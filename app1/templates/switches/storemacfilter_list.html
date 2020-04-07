@@ -1,0 +1,43 @@
+{% extends "include/base.html" %}
+
+
+{% block title %}
+Отфильтрованные
+{% endblock %}
+
+
+{% block content %}
+<div class="storemac">
+    <h1 class="mb-5">Mac адреса на портах всех коммутаторов</h1>
+    <table class="table" border="1">
+        <colgroup>
+            <col span="9" style="background:Khaki">
+            <!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+            <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+        </colgroup>
+        <tr>
+            <th>Коммутатор</th>
+            <th>Порт</th>
+            <th>Mac адрес</th>
+            <th>Дата опроса</th>
+            <th>Vlan</th>
+            <th>nport</th>
+            <th>ComWare port</th>
+        </tr>
+        {% for storemac in storemac1_list %}
+        <tr>
+            <td>{{storemac.ip_switch}}</td>
+            <td>{{storemac.port}}</td>
+            <td>{{storemac.mac}}</td>
+            <td>{{storemac.lastupd}}</td>
+            <td>{{storemac.vlan}}</td>
+            <td>{{storemac.nport}}</td>
+            <td>{{storemac.portview}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="q1">
+        {% include 'include/pagination_find.html' %}
+    </div>
+</div>
+{% endblock %}

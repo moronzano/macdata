@@ -1,0 +1,51 @@
+{% extends "include/base.html" %}
+
+
+{% block title %}
+Storemac
+{% endblock %}
+
+
+{% block content %}
+<div class="storemenu">
+    <form class="search-panel" action="{% url 'StoreMacFilterView' %}">
+        <input class="mac-search form-control mr-sm-2" type="search" placeholder="Поиск ip, mac или vlan"
+            aria-label="Search" name="search_1">
+        <button class="btn-search btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+
+    </form>
+</div>
+<div class="storemac">
+    <h1 class="mb-5">Mac адреса на портах всех коммутаторов</h1>
+    <table class="table" border="1">
+        <colgroup>
+            <col span="9" style="background:Khaki">
+            <!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+            <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+        </colgroup>
+        <tr>
+            <th>Коммутатор</th>
+            <th>Порт</th>
+            <th>Mac адрес</th>
+            <th>Дата опроса</th>
+            <th>Vlan</th>
+            <th>nport</th>
+            <th>ComWare port</th>
+        </tr>
+        {% for storemac in storemac_list %}
+        <tr>
+            <td>{{storemac.ip_switch}}</td>
+            <td>{{storemac.port}}</td>
+            <td>{{storemac.mac}}</td>
+            <td>{{storemac.lastupd}}</td>
+            <td>{{storemac.vlan}}</td>
+            <td>{{storemac.nport}}</td>
+            <td>{{storemac.portview}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="q1">
+        {% include 'include/pagination.html' %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "switches/sw1.html" %}
+
+{% block title %}
+Switches_Detail
+{% endblock %}
+
+{% block sw1_d1 %}
+<div class="sw1_block2">
+    <table class="table">
+        <colgroup>
+            <col span="9" style="background:rgb(240, 140, 140)">
+            <!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+            <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+        </colgroup>
+        <tr>
+            <th>Порт</th>
+            <th>Mac</th>
+            <th>Vlan</th>
+        </tr>
+        {% for storemac in sw1_list %}
+        <tr>
+            <td>{{storemac.0}}</td>
+            <td>{{storemac.1}}</td>
+            <td>{{storemac.2}}</td>
+            <td>{{storemac}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="q1">
+        {% include 'include/pagination.html' %}
+    </div>
+</div>
+
+{% endblock sw1_d1 %}

@@ -1,0 +1,49 @@
+{% extends "include/base.html" %}
+
+
+{% block title %}
+Switches
+{% endblock %}
+
+
+{% block content %}
+<!--h1-- class="mb-5">Коммутаторы</!--h1-->
+<table class="table">
+    <caption class="mcaption">Коммутаторы</caption>
+    <!--
+    <colgroup>
+        <col span="9" style="background:Khaki">
+        <col style="background-color:LightCyan">
+    </colgroup>-->
+
+    <tr>
+        <th>Модель</th>
+        <th>IP адрес</th>
+        <th>Дата опроса</th>
+        <th>Доступность</th>
+        <th>Корпус</th>
+        <th>Этаж</th>
+        <th>Кабинет</th>
+        <th>Uplink</th>
+        <th>Когда был доступен</th>
+        <th>Need</th>
+    </tr>
+    {% for switch in switch_list %}
+    <tr>
+        <td>{{switch.name}}</td>
+        <td>{{switch.ip_switch}}</td>
+        <td>{{switch.lustupd}}</td>
+        <td>{{switch.rem}}</td>
+        <td>{{switch.corp}}</td>
+        <td>{{switch.etag}}</td>
+        <td>{{switch.room}}</td>
+        <td>{{switch.uplink}}</td>
+        <td>{{switch.livedate}}</td>
+        <td>{{switch.need}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="q1">
+    {% include 'include/pagination.html' %}
+</div>
+{% endblock %}

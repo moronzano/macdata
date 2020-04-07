@@ -1,0 +1,37 @@
+{% extends "include/base.html" %}
+
+
+{% block title %}
+DHCP
+{% endblock %}
+
+
+{% block content %}
+<h1 class="mb-5">DHCP</h1>
+<table class="table" border="1">
+    <colgroup>
+        <col span="9" style="background:Khaki">
+        <!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+        <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+    </colgroup>
+
+    <tr>
+        <th>IP адрес</th>
+        <th>MAC адрес</th>
+        <th>DNS имя</th>
+        <th>Need</th>
+    </tr>
+    {% for dhcp_row in dhcp_list %}
+    <tr>
+        <td>{{dhcp_row.ip_add}}</td>
+        <td>{{dhcp_row.mac_txt}}</td>
+        <td>{{dhcp_row.dns_name}}</td>
+        <td>{{dhcp_row.fl}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="q1">
+    {% include 'include/pagination.html' %}
+</div>
+</nav>
+{% endblock %}

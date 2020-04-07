@@ -1,0 +1,41 @@
+{% extends "include/base.html" %}
+
+
+{% block title %}
+MacDhcp
+{% endblock %}
+
+
+{% block content %}
+<h1 class="mb-5">Mac адреса и Dns имена</h1>
+<table class="table" border="1">
+    <colgroup>
+        <col span="9" style="background:Khaki">
+        <!-- С помощью этой конструкции задаем цвет фона для первых двух столбцов таблицы-->
+        <col style="background-color:LightCyan"><!-- Задаем цвет фона для следующего (одного) столбца таблицы-->
+    </colgroup>
+    <tr>
+        <th>Коммутатор</th>
+        <th>Порт</th>
+        <th>Mac адрес</th>
+        <th>Дата опроса</th>
+        <th>IP адрес</th>
+        <th>DNS имя</th>
+        <th>Vlan</th>
+    </tr>
+    {% for macdhcp in macdhcp_list %}
+    <tr>
+        <td>{{macdhcp.0}}</td>
+        <td>{{macdhcp.1}}</td>
+        <td>{{macdhcp.2}}</td>
+        <td>{{macdhcp.3}}</td>
+        <td>{{macdhcp.4}}</td>
+        <td>{{macdhcp.5}}</td>
+        <td>{{macdhcp.6}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="q1">
+    {% include 'include/pagination.html' %}
+</div>
+{% endblock %}
