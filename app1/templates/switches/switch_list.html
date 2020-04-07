@@ -10,13 +10,14 @@ Switches
 <!--h1-- class="mb-5">Коммутаторы</!--h1-->
 <table class="table">
     <caption class="mcaption">Коммутаторы</caption>
-    <!--
+
     <colgroup>
-        <col span="9" style="background:Khaki">
+        <col span="1" style="background:rgb(197, 39, 163)">
         <col style="background-color:LightCyan">
-    </colgroup>-->
+    </colgroup>
 
     <tr>
+        <th>Выбрать</th>
         <th>Модель</th>
         <th>IP адрес</th>
         <th>Дата опроса</th>
@@ -30,6 +31,7 @@ Switches
     </tr>
     {% for switch in switch_list %}
     <tr>
+        <td><input type="radio" name="sw" value={{switch.id}}></td>
         <td>{{switch.name}}</td>
         <td>{{switch.ip_switch}}</td>
         <td>{{switch.lustupd}}</td>
