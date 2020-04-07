@@ -105,12 +105,13 @@ class SwithesDetail(ListView):
         try:
             queryset = paginator.page(page)
         except PageNotAnInteger:
-            page = 1
+            #page = 1
             queryset = paginator.page(1)
         except EmptyPage:
             queryset = paginator.page(paginator.num_pages)
-        pn2 = page
-        content = {"sw1_list": queryset, "pn2": pn2}
+        #pn2 = page
+        #content = {"sw1_list": queryset, "pn2": pn2}
+        content = {"sw1_list": queryset}
         return render(request, "switches/sw1.html", content)
 
 
