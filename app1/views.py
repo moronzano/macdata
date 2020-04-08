@@ -11,6 +11,15 @@ def index(request):
     return render(request, "switches/index.html")
 
 
+def SwChoiceView(request):
+    if request.POST:
+        # if 'sw' in request.POST:
+        sw = request.POST.get('sw', '1')
+        print(sw)
+    return render(request, "switches/index.html")
+    # return render(request, "/")
+
+
 class SwithesView(View):
     # Тоже альтернатива
     def get(self, request):
@@ -23,7 +32,7 @@ class SwithesView2(ListView):
     model = Switches
     context_object_name = "switch_list"
     template_name = "switches/switch_list.html"
-    paginate_by = 20
+    paginate_by = 17
 
     # Оставлено в качестве альтернативного примера пагинации
     # def get_queryset(self):

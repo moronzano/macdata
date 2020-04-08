@@ -8,44 +8,57 @@ Switches
 
 {% block content %}
 <!--h1-- class="mb-5">Коммутаторы</!--h1-->
-<table class="table">
-    <caption class="mcaption">Коммутаторы</caption>
+<div class="storemenu2">
+    <form class="search-panel" action="{% url 'SwChoiceView' %}" method="post">
+        {% csrf_token %}
+        <div class="storemenu">
+            <button class="btn-search btn btn-outline-success my-2 my-sm-0" type="submit">Новый</button>
+            <button class="btn-search btn btn-outline-success my-2 my-sm-0" type="submit">Редактировать</button>
+            <button class="btn-search btn btn-outline-success my-2 my-sm-0" type="submit">Удалить</button>
+        </div>
 
-    <colgroup>
-        <col span="1" style="background:rgb(197, 39, 163)">
-        <col style="background-color:LightCyan">
-    </colgroup>
 
-    <tr>
-        <th>Выбрать</th>
-        <th>Модель</th>
-        <th>IP адрес</th>
-        <th>Дата опроса</th>
-        <th>Доступность</th>
-        <th>Корпус</th>
-        <th>Этаж</th>
-        <th>Кабинет</th>
-        <th>Uplink</th>
-        <th>Когда был доступен</th>
-        <th>Need</th>
-    </tr>
-    {% for switch in switch_list %}
-    <tr>
-        <td><input type="radio" name="sw" value={{switch.id}}></td>
-        <td>{{switch.name}}</td>
-        <td>{{switch.ip_switch}}</td>
-        <td>{{switch.lustupd}}</td>
-        <td>{{switch.rem}}</td>
-        <td>{{switch.corp}}</td>
-        <td>{{switch.etag}}</td>
-        <td>{{switch.room}}</td>
-        <td>{{switch.uplink}}</td>
-        <td>{{switch.livedate}}</td>
-        <td>{{switch.need}}</td>
-    </tr>
-    {% endfor %}
-</table>
-<div class="q1">
-    {% include 'include/pagination.html' %}
+
+        <table class="table">
+            <caption class="mcaption">Коммутаторы</caption>
+
+            <colgroup>
+                <col span="1" style="background:rgb(197, 39, 163)">
+                <col style="background-color:LightCyan">
+            </colgroup>
+
+            <tr>
+                <th>Выбрать</th>
+                <th>Модель</th>
+                <th>IP адрес</th>
+                <th>Дата опроса</th>
+                <th>Доступность</th>
+                <th>Корпус</th>
+                <th>Этаж</th>
+                <th>Кабинет</th>
+                <th>Uplink</th>
+                <th>Когда был доступен</th>
+                <th>Need</th>
+            </tr>
+            {% for switch in switch_list %}
+            <tr>
+                <td><input type="radio" name="sw" value={{switch.id}}></td>
+                <td>{{switch.name}}</td>
+                <td>{{switch.ip_switch}}</td>
+                <td>{{switch.lustupd}}</td>
+                <td>{{switch.rem}}</td>
+                <td>{{switch.corp}}</td>
+                <td>{{switch.etag}}</td>
+                <td>{{switch.room}}</td>
+                <td>{{switch.uplink}}</td>
+                <td>{{switch.livedate}}</td>
+                <td>{{switch.need}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="q1">
+            {% include 'include/pagination.html' %}
+        </div>
+    </form>
 </div>
 {% endblock %}
