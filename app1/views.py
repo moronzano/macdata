@@ -5,6 +5,7 @@ from .models import Switches, DhcpTable, StoreMac, MacDhcp
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+from .forms import SwitchesForm
 
 
 def index(request):
@@ -13,10 +14,16 @@ def index(request):
 
 def SwChoiceView(request):
     if request.POST:
-        # if 'sw' in request.POST:
-        sw = request.POST.get('sw', '1')
-        print(sw)
-    return render(request, "switches/index.html")
+        if '_edit' in request.POST:
+            sw = request.POST.get('sw', '1')
+            print(sw)
+            #row = Switches.objects.get(pk=sw)
+            row = get_object_or_404(Switches, pk=sw)
+            #form = SwitchesForm(request.POST, instance=row)
+            form = SwitchesForm(instance=row)
+            return render(request, "forms/edit_sw.html", {"form": form})
+        else:
+            return render(request, "switches/index.html")
     # return render(request, "/")
 
 
