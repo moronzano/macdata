@@ -1,13 +1,15 @@
 from django.db import models
 from macaddress.fields import MACAddressField
 from django.db import connection
+from autoslug.fields import AutoSlugField
 
 
 class SwModels(models.Model):
     name = models.CharField("Модель коммутатора", max_length=20)
     part_n = models.CharField("Part No", max_length=20, null=True)
     description = models.CharField("Описание", max_length=20, null=True)
-    #slug = models.SlugField(max_length=150, unique=True)
+    url = AutoSlugField(
+        populate_from='name', unique=True, db_index=True, always_update=True)
 
     # def get_absolute_url(self):
     #    return reverse('switch_detail_url', kwargs={'slug': self.slug})
