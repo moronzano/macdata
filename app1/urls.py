@@ -15,6 +15,7 @@ urlpatterns = [
          name='StoreMacFilterView'),
     path('^sw-menu/$', SwithesDetail.as_view(), name='SwithesDetail'),
     path(r'^<int:pk1>/<int:p1>', StoreMacView2.as_view(), name='StoreMacView2'),
-    path(r'^sw-choice/$', SwChoiceView, name='SwChoiceView')
+    path(r'^sw-choice/$', SwChoiceView, name='SwChoiceView'),
+    path(r'^sw-edit/<int:sw>$', SwEdit, name='SwEdit')
     #path(r'^(?P<pk1>\d+)', StoreMacView2.as_view(), name='StoreMacView2')
 ]

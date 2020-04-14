@@ -2,10 +2,26 @@
 
 
 {% block content %}
-<form action="" method="POST">
+<form method="POST">
     {% csrf_token %}
+    <!--
+        ! Сделать стили
+        ? Как их сделать?
+    -->
+    {% for field in form %}
+    <div class="form1">
+        <div class="err">
+            {{ field.errors }}
+        </div>
+
+        {{ field.label_tag }}
+        {{ field }}
+    </div>
+    {% endfor %}
+    <!--
     {{ form.name }}
     {{ form.ip_switch }}
-    <input type="submit" value="Update">
+    -->
+    <button class="btn btn-primary" type="submit">Update</button>
 </form>
 {% endblock %}

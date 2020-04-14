@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from .forms import SwitchesForm
+from django.shortcuts import redirect
 
 
 def index(request):
@@ -19,12 +20,45 @@ def SwChoiceView(request):
             print(sw)
             #row = Switches.objects.get(pk=sw)
             row = get_object_or_404(Switches, pk=sw)
-            #form = SwitchesForm(request.POST, instance=row)
-            form = SwitchesForm(instance=row)
+            request.method = 'GET'
+            if request.method == 'POST':
+                print('0000000000000000000000000000000')
+                form = SwitchesForm(request.POST, instance=row)
+                if form.is_valid():
+                    rw = form.save(commit=False)
+                    row.name = request.name
+                    row.ip_switch = request.ip_switch
+                    row.save()
+                    return redirect('SwithesView2')
+            else:
+                print('11111111111111111111111111111')
+                form = SwitchesForm(instance=row)
             return render(request, "forms/edit_sw.html", {"form": form})
         else:
             return render(request, "switches/index.html")
-    # return render(request, "/")
+
+
+def SwEdit(request, sw):
+    #sw = request.POST.get('sw', '1')
+    print('**********************')
+    print(sw)
+    row = get_object_or_404(Switches, pk=sw)
+    print('**********************')
+    if request.method == 'POST':
+        print('Редактирование')
+        form = SwitchesForm(request.POST, instance=row)
+        if form.is_valid():
+            print('Запись')
+            row = form.save(commit=False)
+            #row.name = request.name
+            #row.ip_switch = request.ip_switch
+            row.save()
+            # form.save()
+            return redirect('SwithesView2')
+    else:
+        print('Просмотр')
+        form = SwitchesForm(instance=row)
+    return render(request, "forms/edit_sw.html", {"form": form})
 
 
 class SwithesView(View):

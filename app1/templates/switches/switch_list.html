@@ -30,6 +30,11 @@ Switches
             </colgroup>
 
             <tr>
+                <!--
+                <th>Выбрать</th>
+                -->
+                <th>Выбрать</th>
+                <th>Выбрать</th>
                 <th>Выбрать</th>
                 <th>Модель</th>
                 <th>IP адрес</th>
@@ -44,10 +49,15 @@ Switches
             </tr>
             {% for switch in switch_list %}
             <tr>
+                <!--
                 <td><input type="radio" name="sw" value={{switch.id}}></td>
+                -->
+                <td><a href="#">Новый</a></td>
+                <td><a href="{% url 'SwEdit' switch.id %}">Редактировать</a></td>
+                <td><a href="#">Удалить</a></td>
                 <td>{{switch.name}}</td>
                 <td>{{switch.ip_switch}}</td>
-                <td>{{switch.lustupd}}</td>
+                <td>{{switch.lastupd}}</td>
                 <td>{{switch.rem}}</td>
                 <td>{{switch.corp}}</td>
                 <td>{{switch.etag}}</td>

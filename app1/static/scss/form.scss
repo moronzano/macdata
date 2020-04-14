@@ -1,0 +1,26 @@
+/*@import "_nullstyle";*/
+
+.form1 {
+    margin: 10px 0;
+    label {
+        font-size: 16px;
+        border: 1px solid #ced4da;
+    }
+    input {
+        color: green;
+        width: 250px;
+        height: 25px;
+        border: 1px solid #ced4da;
+        border-radius: 3px;
+    }
+    select {
+        color: green;
+        width: 250px;
+        height: 25px;
+        border: 1px solid #ced4da;
+        border-radius: 3px;
+    }
+    .err {
+        color: red;
+    }
+}
