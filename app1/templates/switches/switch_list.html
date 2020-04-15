@@ -9,7 +9,7 @@ Switches
 {% block content %}
 <!--h1-- class="mb-5">Коммутаторы</!--h1-->
 <div class="storemenu2">
-    <form class="search-panel" action="{% url 'SwChoiceView' %}" method="post">
+    <!--<form class="search-panel" action="{% url 'SwChoiceView' %}" method="post">
         {% csrf_token %}
         <div class="storemenu">
             <button class="btn-search btn btn-outline-success my-2 my-sm-0" name="_create" type="submit">Новый</button>
@@ -18,14 +18,14 @@ Switches
             <button class="btn-search btn btn-outline-success my-2 my-sm-0" name="_delete"
                 type="submit">Удалить</button>
         </div>
+    -->
 
-
-
-        <table class="table">
+    <div class="sw3_block">
+        <table class="table1">
             <caption class="mcaption">Коммутаторы</caption>
 
             <colgroup>
-                <col span="1" style="background:rgb(197, 39, 163)">
+                <col span="3" style="background:rgb(143, 240, 140)">
                 <col style="background-color:LightCyan">
             </colgroup>
 
@@ -52,9 +52,9 @@ Switches
                 <!--
                 <td><input type="radio" name="sw" value={{switch.id}}></td>
                 -->
-                <td><a href="#">Новый</a></td>
-                <td><a href="{% url 'SwEdit' switch.id %}">Редактировать</a></td>
-                <td><a href="#">Удалить</a></td>
+                <td><a href="#">&#10010;</a></td>
+                <td class="mcell"><a href="{% url 'SwEdit' switch.id %}">&#9998;</a></td>
+                <td><a href="#">&#10008;</a></td>
                 <td>{{switch.name}}</td>
                 <td>{{switch.ip_switch}}</td>
                 <td>{{switch.lastupd}}</td>
@@ -68,9 +68,11 @@ Switches
             </tr>
             {% endfor %}
         </table>
+
         <div class="q1">
             {% include 'include/pagination.html' %}
         </div>
-    </form>
+    </div>
+    <!--</form>-->
 </div>
 {% endblock %}

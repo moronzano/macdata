@@ -16,30 +16,17 @@ def index(request):
 def SwChoiceView(request):
     if request.POST:
         if '_edit' in request.POST:
-            sw = request.POST.get('sw', '1')
-            print(sw)
-            #row = Switches.objects.get(pk=sw)
-            row = get_object_or_404(Switches, pk=sw)
             request.method = 'GET'
-            if request.method == 'POST':
-                print('0000000000000000000000000000000')
-                form = SwitchesForm(request.POST, instance=row)
-                if form.is_valid():
-                    rw = form.save(commit=False)
-                    row.name = request.name
-                    row.ip_switch = request.ip_switch
-                    row.save()
-                    return redirect('SwithesView2')
-            else:
-                print('11111111111111111111111111111')
-                form = SwitchesForm(instance=row)
-            return render(request, "forms/edit_sw.html", {"form": form})
+            sw = request.POST.get('sw', '1')
+            SwEdit2(request, sw)
+            return redirect('SwithesView2')
         else:
             return render(request, "switches/index.html")
+    # return redirect('SwithesView2')
 
 
 def SwEdit(request, sw):
-    #sw = request.POST.get('sw', '1')
+    # sw = request.POST.get('sw', '1')
     print('**********************')
     print(sw)
     row = get_object_or_404(Switches, pk=sw)
@@ -50,8 +37,31 @@ def SwEdit(request, sw):
         if form.is_valid():
             print('Запись')
             row = form.save(commit=False)
-            #row.name = request.name
-            #row.ip_switch = request.ip_switch
+            # row.name = request.name
+            # row.ip_switch = request.ip_switch
+            row.save()
+            # form.save()
+            return redirect('SwithesView2')
+    else:
+        print('Просмотр')
+        form = SwitchesForm(instance=row)
+    return render(request, "forms/edit_sw.html", {"form": form})
+
+
+def SwEdit2(request, sw):
+    # sw = request.POST.get('sw', '1')
+    print('**********************')
+    print(sw)
+    row = get_object_or_404(Switches, pk=sw)
+    print('**********************')
+    if request.method == 'POST':
+        print('Редактирование')
+        form = SwitchesForm(request.POST, instance=row)
+        if form.is_valid():
+            print('Запись')
+            row = form.save(commit=False)
+            # row.name = request.name
+            # row.ip_switch = request.ip_switch
             row.save()
             # form.save()
             return redirect('SwithesView2')
@@ -161,7 +171,7 @@ class SwithesDetail(ListView):
             queryset = paginator.page(paginator.num_pages)
         pn2 = page
         content = {"sw1_list": queryset, "pn2": pn2}
-        #content = {"sw1_list": queryset}
+        # content = {"sw1_list": queryset}
         return render(request, "switches/sw1.html", content)
 
 
